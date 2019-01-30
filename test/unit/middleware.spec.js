@@ -35,7 +35,7 @@ describe('Middleware', function () {
       foo: 'App/Foo',
       bar: 'App/Bar'
     })
-    assert.deepEqual(Middleware.getStore()._store.named, [{foo: 'App/Foo', bar: 'App/Bar'}])
+    assert.deepEqual(Middleware.getStore()._store.named, [{ foo: 'App/Foo', bar: 'App/Bar' }])
   })
 
   it('should be able to resolve named middleware', function () {
@@ -44,7 +44,7 @@ describe('Middleware', function () {
       bar: 'App/Bar'
     })
     const resolved = Middleware.resolve(['foo'])
-    assert.deepEqual(resolved, [{namespace: 'App/Foo', args: null}])
+    assert.deepEqual(resolved, [{ namespace: 'App/Foo', args: null }])
   })
 
   it('should return empty array when no named middleware have been passed', function () {
@@ -71,7 +71,7 @@ describe('Middleware', function () {
       bar: 'App/Bar'
     })
     const resolved = Middleware.resolve(['foo:1,2'])
-    assert.deepEqual(resolved, [{namespace: 'App/Foo', args: ['1', '2']}])
+    assert.deepEqual(resolved, [{ namespace: 'App/Foo', args: ['1', '2'] }])
   })
 
   it('should concat global middleware with named middleware', function () {
@@ -81,7 +81,7 @@ describe('Middleware', function () {
       bar: 'App/Bar'
     })
     const resolved = Middleware.resolve(['foo:1,2'], true)
-    assert.deepEqual(resolved, ['Cors', 'Shield', {namespace: 'App/Foo', args: ['1', '2']}])
+    assert.deepEqual(resolved, ['Cors', 'Shield', { namespace: 'App/Foo', args: ['1', '2'] }])
   })
 
   it('should compose and run middleware via constructing them properly', function (done) {
@@ -116,7 +116,7 @@ describe('Middleware', function () {
 
     const resolved = Middleware.resolve(['auth:basic'], true)
     const socket = {}
-    const request = {count: 0}
+    const request = { count: 0 }
     const composed = Middleware.compose(resolved, { socket, request })
     co(async function () {
       await composed()

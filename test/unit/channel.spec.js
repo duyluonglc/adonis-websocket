@@ -90,9 +90,9 @@ describe('Channel', function () {
     const io = socketio(server)
 
     new Channel(io, Context, '/', function () {})
-    .disconnected(function (context) {
-      server.close(done)
-    })
+      .disconnected(function (context) {
+        server.close(done)
+      })
 
     server.listen(5000)
 
@@ -107,9 +107,9 @@ describe('Channel', function () {
     const io = socketio(server)
 
     new Channel(io, Context, '/', function () {})
-    .disconnected(function ({ socket }) {
-      server.close(done)
-    })
+      .disconnected(function ({ socket }) {
+        server.close(done)
+      })
 
     server.listen(5000)
 
@@ -353,12 +353,12 @@ describe('Channel', function () {
         socket.toMe().emit('shout', socket.socket.id)
       })
     })
-    .disconnected(function () {
-      disconnectedCounts++
-      if (eventsCount === 2 && disconnectedCounts === 2) {
-        server.close(done)
-      }
-    })
+      .disconnected(function () {
+        disconnectedCounts++
+        if (eventsCount === 2 && disconnectedCounts === 2) {
+          server.close(done)
+        }
+      })
 
     server.listen(5000)
 
@@ -398,12 +398,12 @@ describe('Channel', function () {
         socket.toMe().emit('shout', socket.socket.id)
       })
     })
-    .disconnected(function () {
-      disconnectedCounts++
-      if (eventsCount === 2 && disconnectedCounts === 2) {
-        server.close(done)
-      }
-    })
+      .disconnected(function () {
+        disconnectedCounts++
+        if (eventsCount === 2 && disconnectedCounts === 2) {
+          server.close(done)
+        }
+      })
 
     server.listen(5000)
 
@@ -439,16 +439,16 @@ describe('Channel', function () {
     const io = socketio(server)
     new Channel(io, Context, '/', function ({ socket }) {
       socket.on('ready', function (ids) {
-        socket.to(ids).emit('shout', {from: socket.socket.id, to: ids})
+        socket.to(ids).emit('shout', { from: socket.socket.id, to: ids })
       })
     })
-    .disconnected(function ({ socket }) {
-      disconnectedCounts++
-      if (eventsCount === 2 && disconnectedCounts === 2) {
-        client.disconnect()
-        server.close(done)
-      }
-    })
+      .disconnected(function ({ socket }) {
+        disconnectedCounts++
+        if (eventsCount === 2 && disconnectedCounts === 2) {
+          client.disconnect()
+          server.close(done)
+        }
+      })
 
     server.listen(5000)
 
@@ -496,16 +496,16 @@ describe('Channel', function () {
     const io = socketio(server)
     new Channel(io, Context, '/chat', function ({ socket }) {
       socket.on('ready', function (ids) {
-        socket.to(ids).emit('shout', {from: socket.socket.id, to: ids})
+        socket.to(ids).emit('shout', { from: socket.socket.id, to: ids })
       })
     })
-    .disconnected(function ({ socket }) {
-      disconnectedCounts++
-      if (eventsCount === 2 && disconnectedCounts === 2) {
-        client.disconnect()
-        server.close(done)
-      }
-    })
+      .disconnected(function ({ socket }) {
+        disconnectedCounts++
+        if (eventsCount === 2 && disconnectedCounts === 2) {
+          client.disconnect()
+          server.close(done)
+        }
+      })
 
     server.listen(5000)
 
@@ -708,7 +708,7 @@ describe('Channel', function () {
     const handler = function () {
       clientsReadyCount++
       if (clientsReadyCount === 3) {
-        channel.to([client1.id, client2.id]).emit('shout', {to: [client1.id, client2.id]})
+        channel.to([client1.id, client2.id]).emit('shout', { to: [client1.id, client2.id] })
       }
     }
 
@@ -762,7 +762,7 @@ describe('Channel', function () {
     const handler = function () {
       clientsReadyCount++
       if (clientsReadyCount === 3) {
-        channel.to([`/chat#${client1.id}`, `/chat#${client2.id}`]).emit('shout', {to: [client1.id, client2.id]})
+        channel.to([`/chat#${client1.id}`, `/chat#${client2.id}`]).emit('shout', { to: [client1.id, client2.id] })
       }
     }
 
@@ -851,7 +851,7 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: { id: client.id } })
     })
   })
 
@@ -886,7 +886,7 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: { id: client.id } })
     })
   })
 
@@ -907,7 +907,7 @@ describe('Channel', function () {
         server.close(done)
         client.disconnect()
       }
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, fn)
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, fn)
     })
   })
 
@@ -930,7 +930,7 @@ describe('Channel', function () {
         server.close(done)
         client.disconnect()
       }
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, fn)
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, fn)
     })
   })
 
@@ -953,7 +953,7 @@ describe('Channel', function () {
         server.close(done)
         client.disconnect()
       }
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, fn)
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, fn)
     })
   })
 
@@ -978,8 +978,8 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
-        client.emit('leave:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
+        client.emit('leave:ad:room', { room: 'lobby', body: { id: client.id } })
       })
     })
   })
@@ -1005,8 +1005,8 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
-        client.emit('leave:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
+        client.emit('leave:ad:room', { room: 'lobby', body: { id: client.id } })
       })
     })
   })
@@ -1026,8 +1026,8 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
-        client.emit('leave:ad:room', {room: 'lobby', body: {id: client.id}}, function (error) {
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
+        client.emit('leave:ad:room', { room: 'lobby', body: { id: client.id } }, function (error) {
           assert.equal(error, 'Cannot leave room')
           assert.equal(channel.get(client.id).socket.rooms.lobby, 'lobby')
           server.close(done)
@@ -1069,7 +1069,7 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: { id: client.id } })
     })
   })
 
@@ -1094,7 +1094,7 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: { id: client.id } })
     })
   })
 
@@ -1122,8 +1122,8 @@ describe('Channel', function () {
     let client = null
     client = wsClient.connect(socketUrl, options)
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
-        client.emit('leave:ad:room', {room: 'lobby', body: {id: client.id}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
+        client.emit('leave:ad:room', { room: 'lobby', body: { id: client.id } })
       })
     })
   })
@@ -1172,11 +1172,11 @@ describe('Channel', function () {
     })
 
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} })
     })
 
     client1.on('connect', function () {
-      client1.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
+      client1.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
         client.emit('ready')
       })
     })
@@ -1292,11 +1292,11 @@ describe('Channel', function () {
     })
 
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} })
     })
 
     client1.on('connect', function () {
-      client1.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
+      client1.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
         client.emit('ready')
       })
     })
@@ -1346,11 +1346,11 @@ describe('Channel', function () {
     })
 
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} })
     })
 
     client1.on('connect', function () {
-      client1.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
+      client1.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
         client.emit('ready')
       })
     })
@@ -1397,11 +1397,11 @@ describe('Channel', function () {
     })
 
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} })
     })
 
     client1.on('connect', function () {
-      client1.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
+      client1.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
         client.emit('ready')
       })
     })
@@ -1446,11 +1446,11 @@ describe('Channel', function () {
     })
 
     client.on('connect', function () {
-      client.emit('join:ad:room', {room: 'lobby', body: {}})
+      client.emit('join:ad:room', { room: 'lobby', body: {} })
     })
 
     client1.on('connect', function () {
-      client1.emit('join:ad:room', {room: 'lobby', body: {}}, function () {
+      client1.emit('join:ad:room', { room: 'lobby', body: {} }, function () {
         client.emit('ready')
       })
     })
@@ -1461,7 +1461,7 @@ describe('Channel', function () {
     const io = socketio(server)
 
     const channel = new Channel(io, Context, '/', function ({ socket }) {
-      channel.presence.track(socket, 1, {device: 'chrome'})
+      channel.presence.track(socket, 1, { device: 'chrome' })
     })
 
     server.listen(5000)
@@ -1473,7 +1473,7 @@ describe('Channel', function () {
         id: 1,
         payload: [{
           socketId: client.id,
-          meta: {device: 'chrome'}
+          meta: { device: 'chrome' }
         }]
       }])
       server.close(done)
@@ -1486,7 +1486,7 @@ describe('Channel', function () {
     const io = socketio(server)
 
     const channel = new Channel(io, Context, '/', function ({ socket }) {
-      channel.presence.track(socket, socket.id, {device: 'chrome'})
+      channel.presence.track(socket, socket.id, { device: 'chrome' })
     })
 
     server.listen(5000)
@@ -1505,13 +1505,13 @@ describe('Channel', function () {
           id: client.id,
           payload: [{
             socketId: client.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }]
         }, {
           id: client1.id,
           payload: [{
             socketId: client1.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }]
         }])
         client.disconnect()
@@ -1526,7 +1526,7 @@ describe('Channel', function () {
     const io = socketio(server)
 
     const channel = new Channel(io, Context, '/', function ({ socket }) {
-      channel.presence.track(socket, 1, {device: 'chrome'})
+      channel.presence.track(socket, 1, { device: 'chrome' })
     })
 
     server.listen(5000)
@@ -1545,10 +1545,10 @@ describe('Channel', function () {
           id: 1,
           payload: [{
             socketId: client.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }, {
             socketId: client1.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }]
         }])
         assert.lengthOf(channel.presence._usersPool['1'], 2)
@@ -1558,7 +1558,7 @@ describe('Channel', function () {
           id: 1,
           payload: [{
             socketId: client1.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }]
         }])
         assert.lengthOf(channel.presence._usersPool['1'], 1)
@@ -1573,7 +1573,7 @@ describe('Channel', function () {
     const io = socketio(server)
 
     const channel = new Channel(io, Context, '/', function ({ socket }) {
-      channel.presence.track(socket, 1, {device: 'chrome'})
+      channel.presence.track(socket, 1, { device: 'chrome' })
     })
 
     server.listen(5000)
@@ -1603,7 +1603,7 @@ describe('Channel', function () {
           id: 1,
           payload: [{
             socketId: client1.id,
-            meta: {device: 'chrome'}
+            meta: { device: 'chrome' }
           }]
         }])
         client1.disconnect()
@@ -1617,7 +1617,7 @@ describe('Channel', function () {
     const io = socketio(server)
 
     const channel = new Channel(io, Context, '/', function ({ socket }) {
-      channel.presence.track(socket, 1, {device: 'chrome'})
+      channel.presence.track(socket, 1, { device: 'chrome' })
     }).disconnected(function () {
       server.close(done)
     })

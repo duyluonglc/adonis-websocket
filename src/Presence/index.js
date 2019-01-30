@@ -69,7 +69,7 @@ class Presence {
           meta: user.meta
         })
         return result
-      }, {payload: []})
+      }, { payload: [] })
     })
     this.io.emit('presence:state', publishPayload)
   }

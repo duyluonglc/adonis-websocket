@@ -46,7 +46,7 @@ class WsContext extends Macroable {
      */
     this._socket = socket
 
-     /**
+    /**
      * Node.js socket object
      *
      * @attribute socket

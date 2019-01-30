@@ -23,14 +23,14 @@
   "devDependencies": {
     "@adonisjs/fold": "^4.0.5",
     "chai": "^3.5.0",
-    "coveralls": "^2.11.15",
+    "coveralls": "^3.0.2",
     "cz-conventional-changelog": "^2.1.0",
     "istanbul": "^1.0.0-alpha.2",
-    "mocha": "^3.1.2",
+    "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "sinon": "^4.0.2",
-    "socket.io-client": "^1.5.1",
-    "standard": "^8.5.0"
+    "socket.io-client": "^2.2.0",
+    "standard": "^12.0.1"
   },
   "config": {
     "commitizen": {
@@ -55,7 +55,8 @@
     "macroable": "^1.0.0",
     "node-exceptions": "^1.0.3",
     "resetable": "^1.0.1",
-    "socket.io": "^1.5.1",
+    "socket.io": "^2.2.0",
+    "socket.io-redis": "^5.2.0",
     "uws": "^9.14.0"
   },
   "repository": {

@@ -41,10 +41,10 @@ Setup._callCustomMiddleware = function () {
     co(async function () {
       await composedFn()
     })
-    .then(() => next())
-    .catch((error) => {
-      debug('error', error)
-      next(error)
-    })
+      .then(() => next())
+      .catch((error) => {
+        debug('error', error)
+        next(error)
+      })
   })
 }

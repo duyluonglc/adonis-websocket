@@ -7,7 +7,7 @@ const path = require('path')
 const html = require('fs').readFileSync(path.join(__dirname, './index.html'), 'utf8')
 
 const server = http.createServer(function (req, res) {
-  res.writeHead(200, {'content-type': 'text/html'})
+  res.writeHead(200, { 'content-type': 'text/html' })
   res.write(html)
   res.end()
 })

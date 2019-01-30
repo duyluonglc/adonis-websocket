@@ -52,7 +52,7 @@ class WsProvider extends Fold.ServiceProvider {
     this._registerWs()
   }
 
-    /**
+  /**
    * Attach context getter when all providers have
    * been registered
    *
@@ -70,7 +70,7 @@ class WsProvider extends Fold.ServiceProvider {
     const SessionManager = this.app.use('Adonis/Src/Session')
     const Response = require('../src/Response')
 
-     /**
+    /**
      * Gets the provider load the env file.
      */
     this.app.use('Adonis/Src/Env')
@@ -79,7 +79,7 @@ class WsProvider extends Fold.ServiceProvider {
       return new Request(this._socket.request, new Response(), Config)
     }, true)
 
-     /**
+    /**
      * Adding getter to the HTTP context. Please note the session
      * store is not initialized yet and middleware must be
      * executed before the session store can be used

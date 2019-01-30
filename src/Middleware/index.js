@@ -85,13 +85,13 @@ Middleware.resolve = function (namedList) {
 
   return globalMiddleware.concat(_.map(namedList, (item) => {
     if (typeof (item) === 'function') {
-      return {namespace: item, isFunction: true}
+      return { namespace: item, isFunction: true }
     }
     const formattedItem = haye.fromPipe(item).toArray()[0]
     if (!namedMiddleware[formattedItem.name]) {
       throw CE.RuntimeException.missingNamedMiddleware(formattedItem.name)
     }
-    return {namespace: namedMiddleware[formattedItem.name], args: formattedItem.args}
+    return { namespace: namedMiddleware[formattedItem.name], args: formattedItem.args }
   }))
 }
 

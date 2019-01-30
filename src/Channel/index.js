@@ -80,8 +80,8 @@ class Channel {
      * @type {Function}
      */
     this._disconnectedFn = this._closureIsAClass && this._closure.prototype.disconnected
-    ? util.wrapIfGenerator(this._closure.prototype.disconnected)
-    : function () {}
+      ? util.wrapIfGenerator(this._closure.prototype.disconnected)
+      : function () {}
 
     /**
      * The method to be invoked whenever someone wants to
@@ -90,8 +90,8 @@ class Channel {
      * @type {Function}
      */
     this._roomJoinFn = this._closureIsAClass && this._closure.prototype.joinRoom
-    ? util.wrapIfGenerator(this._closure.prototype.joinRoom)
-    : function () {}
+      ? util.wrapIfGenerator(this._closure.prototype.joinRoom)
+      : function () {}
 
     /**
      * The method to be invoked whenever someone wants to
@@ -100,8 +100,8 @@ class Channel {
      * @type {Function}
      */
     this._roomLeaveFn = this._closureIsAClass && this._closure.prototype.leaveRoom
-    ? util.wrapIfGenerator(this._closure.prototype.leaveRoom)
-    : function () {}
+      ? util.wrapIfGenerator(this._closure.prototype.leaveRoom)
+      : function () {}
 
     /**
      * Lifecycle methods to be called as soon as

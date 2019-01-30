@@ -74,8 +74,8 @@ describe('Presence', function () {
       id: 3,
       on: function () {}
     }
-    presence.track(socket, 1, {device: 'chrome'})
-    presence.track(socket1, 1, {device: 'iphone'})
+    presence.track(socket, 1, { device: 'chrome' })
+    presence.track(socket1, 1, { device: 'iphone' })
     const iphoneSocket = presence.pull(1, (item) => item.meta.device === 'iphone')
     assert.equal(iphoneSocket[0].socket.id, 3)
     assert.lengthOf(presence._usersPool[1], 1)
@@ -94,8 +94,8 @@ describe('Presence', function () {
       id: 3,
       on: function () {}
     }
-    presence.track(socket, 1, {device: 'chrome'})
-    presence.track(socket1, 1, {device: 'iphone'})
+    presence.track(socket, 1, { device: 'chrome' })
+    presence.track(socket1, 1, { device: 'iphone' })
     socket.cb()
     assert.lengthOf(presence._usersPool[1], 1)
   })
@@ -118,7 +118,7 @@ describe('Presence', function () {
       id: 3,
       on: function () {}
     }
-    presence.track(socket, 1, {device: 'chrome'})
+    presence.track(socket, 1, { device: 'chrome' })
     assert.deepEqual(io.payload, [{
       id: 1,
       payload: [
@@ -169,7 +169,7 @@ describe('Presence', function () {
       id: 3,
       on: function () {}
     }
-    presence.track(socket, 1, {device: 'chrome'})
+    presence.track(socket, 1, { device: 'chrome' })
     assert.deepEqual(io.payload, [{
       id: 1,
       payload: [
