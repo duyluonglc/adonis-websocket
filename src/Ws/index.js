@@ -10,6 +10,7 @@
 */
 
 const socketio = require('socket.io')
+const redis = require('socket.io-redis')
 const { resolver, ioc } = require('@adonisjs/fold')
 const Channel = require('../Channel')
 const Middleware = require('../Middleware')
@@ -19,6 +20,8 @@ const defaultConfig = require('../../examples/config')
 class Ws {
   constructor (Config, Context, Server) {
     this.config = Config.get('ws', defaultConfig)
+    const redisConfig = Config.get('redis')
+    this.redisConfig = redisConfig[redisConfig.connection]
     this.io = null
     if (this.config.useHttpServer) {
       this.attach(Server.getInstance())
@@ -83,6 +86,9 @@ class Ws {
       option = { wsEngine: 'uws' }
     }
     this.io = socketio(server, option)
+    let redisConfig = this.redisConfig
+    redisConfig = redisConfig[redisConfig.connection]
+    this.io.adapter(redis({ host: redisConfig.host, port: redisConfig.port }))
   }
 
   /**
