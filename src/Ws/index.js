@@ -87,7 +87,6 @@ class Ws {
     }
     this.io = socketio(server, option)
     let redisConfig = this.redisConfig
-    redisConfig = redisConfig[redisConfig.connection]
     this.io.adapter(redis({ host: redisConfig.host, port: redisConfig.port }))
   }
 
